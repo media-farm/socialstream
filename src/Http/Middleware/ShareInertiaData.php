@@ -22,8 +22,8 @@ class ShareInertiaData
                 return [
                     'show' => Socialstream::show(),
                     'providers' => Socialstream::providers(),
-                    'hasPassword' => $request->user() && ! is_null($request->user()->password),
-                    'connectedAccounts' => $request->user() ? $request->user()->connectedAccounts
+                    'hasPassword' => $request->user('web') && ! is_null($request->user('web')->password),
+                    'connectedAccounts' => $request->user('web') ? $request->user('web')->connectedAccounts
                         ->map(function (ConnectedAccount $account) {
                             return (object) $account->getSharedInertiaData();
                         }) : [],
